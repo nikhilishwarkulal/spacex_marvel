@@ -4,13 +4,13 @@ import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flame/palette.dart';
 import 'package:flutter/widgets.dart' as widget;
+import 'package:spacex_marvel/game/game_screens/game_component.dart';
 import 'package:spacex_marvel/game/game_screens/parallax_component.dart';
-import 'package:spacex_marvel/game/game_screens/player_component.dart';
 
 class GameScreen extends FlameGame
     with HasDraggables, HasCollidables, HasDraggables {
   late ParallaxComponent parallaxComponent;
-  late final AiroPlaneComponent player;
+  late final GameComponent player;
   late final JoystickComponent joystick;
   late final Sprite bulletSprite;
   late final Sprite astrolidSprite;
@@ -42,7 +42,7 @@ class GameScreen extends FlameGame
       background: CircleComponent(radius: 100, paint: backgroundPaint),
       margin: widget.EdgeInsets.only(bottom: 0, left: (canvasSize.x / 2) - 100),
     );
-    player = AiroPlaneComponent(joystick);
+    player = GameComponent(joystick);
     add(player);
     //add(joystick);
   }

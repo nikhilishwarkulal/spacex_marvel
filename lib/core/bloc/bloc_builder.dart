@@ -8,7 +8,8 @@ import 'bloc.dart';
 class BlocBuilder extends StatelessWidget {
   final Widget Function() builder;
   final Bloc bloc;
-  BlocBuilder({required this.bloc, required this.builder});
+  const BlocBuilder({Key? key, required this.bloc, required this.builder})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
@@ -25,8 +26,12 @@ class BlocBuilderExperimental extends StatefulWidget {
   final Widget Function() builder;
   final Bloc bloc;
   final bool Function()? isUpdateRequired;
-  BlocBuilderExperimental(
-      {required this.bloc, required this.builder, this.isUpdateRequired});
+  const BlocBuilderExperimental(
+      {Key? key,
+      required this.bloc,
+      required this.builder,
+      this.isUpdateRequired})
+      : super(key: key);
   @override
   _BlocBuilderExperimentalState createState() =>
       _BlocBuilderExperimentalState();
