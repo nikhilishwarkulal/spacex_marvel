@@ -5,7 +5,7 @@ import 'package:flame/flame.dart';
 import 'package:flame/geometry.dart';
 import 'package:flame/input.dart';
 import 'package:flame/palette.dart';
-import 'package:flame_audio/flame_audio.dart';
+import 'package:flame_audio/audio_pool.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:spacex_marvel/screens/flutter_game_screen.dart';
 
@@ -23,12 +23,14 @@ class AirCraft extends SpriteAnimationComponent
   late Timer astroSpawner;
   late Timer gameTimer;
   late HitboxPolygon hitbox;
+  late AudioPool pool;
 
   @override
   Future<void> onLoad() async {
     super.onLoad();
     final image = await Flame.images.load('ship_thrust.png');
-
+    pool =
+        await AudioPool.create('laser_shot.ogg', minPlayers: 3, maxPlayers: 4);
     animationt = SpriteAnimation.fromFrameData(
         image,
         SpriteAnimationData.sequenced(
@@ -54,7 +56,8 @@ class AirCraft extends SpriteAnimationComponent
     bulletSpawner = Timer(
       0.3,
       onTick: () {
-        FlameAudio.audioCache.play('laser_shot.ogg');
+        //FlameAudio.audioCache.play('laser_shot.ogg');
+        pool.start();
         gameRef.add(Bullet(
             launchPosition: Vector2(position.x, position.y - (90 * .7))));
       },
