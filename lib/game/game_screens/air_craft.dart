@@ -57,7 +57,7 @@ class AirCraft extends SpriteAnimationComponent
       0.3,
       onTick: () {
         //FlameAudio.audioCache.play('laser_shot.ogg');
-        pool.start();
+        pool.start(volume: 0.1);
         gameRef.add(Bullet(
             launchPosition: Vector2(position.x, position.y - (90 * .7))));
       },
