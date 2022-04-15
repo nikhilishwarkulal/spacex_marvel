@@ -13,7 +13,7 @@ class Blast extends SpriteAnimationComponent with HasGameRef {
   Future<void> onLoad() async {
     super.onLoad();
     final image = await Flame.images.load('explosion.png');
-    FlameAudio.audioCache.play('explosion.wav');
+    FlameAudio.audioCache.play('explosion.mp3');
     animationt = SpriteAnimation.fromFrameData(
       image,
       SpriteAnimationData.sequenced(
